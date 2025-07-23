@@ -1,0 +1,848 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blossoming with Every Mile</title>
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            color: #FFF;
+            display: flex;
+            flex-direction: column;
+            background-color: #E6E6FA; /* Lavender background color */
+        }
+        .background-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Adjust as necessary */
+    overflow: hidden;
+}
+
+#video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none; /* Disable interaction */
+}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-container .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFF;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+        .nav-links a {
+            color: #9370DB;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #6A5ACD;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 120px;
+            height: 70vh;
+        }
+        .text-content {
+            text-align: center;
+            max-width: 70%;
+        }
+        .text-content h2 {
+            font-family: 'Georgia', serif;
+            font-size: 48px;
+            color: #FFF;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .signup-btn {
+            background-color: #9370DB;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .signup-btn:hover {
+            background-color: #6A5ACD;
+            transform: scale(1.05);
+        }
+
+        /* Why Choose Binary Blossom Section */
+        .why-choose-section {
+            background-color: #f7f7f7; /* Light gray background */
+            color: #333; /* Dark text for contrast */
+            display: flex;
+            justify-content: space-between;
+            padding: 50px 20px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .why-choose-content {
+            width: 50%;
+            padding-right: 30px; /* Add spacing between text and image */
+        }
+        .why-choose-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #6A5ACD; /* Brand color */
+        }
+        .why-choose-content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .why-choose-image {
+            width: 50%;
+        }
+        .why-choose-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .feature-box {
+            background-color: #CCCCFF;
+            padding: 30px;
+            border-radius: 10px;
+            flex: 1;
+            transition: transform 0.3s ease;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+        .feature-box h3 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .feature-box p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* FAQ section */
+        .faq-section {
+            background-color: #E6E6FA; /* Lavender background color */
+            color: #333;
+            padding: 50px 20px;
+            margin-top: 50px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .faq-section h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-question {
+            background-color: #9370DB; /* Lighter shade of purple */
+            color: #FFF;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: #6A5ACD; /* Darker shade on hover */
+        }
+        .faq-answer {
+            display: none;
+            background-color: #D8BFD8; /* Even lighter purple */
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+        .faq-answer.visible {
+            display: block;
+        }
+
+        .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Flexbox layout to place contact details and map side by side */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-details ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.contact-details ul li {
+    margin-bottom: 10px;
+}
+
+.contact-details ul li a {
+    text-decoration: none;
+    color :#9370DB;
+    font-weight: bold;
+}
+
+/* Styling for the Google Map */
+.map-wrapper iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+}
+
+/* Make the layout side by side on larger screens */
+@media (min-width: 768px) {
+    .content-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .contact-details, .map-wrapper {
+        flex: 1;
+    }
+
+    .map-wrapper iframe {
+        height: 400px; /* Increase the map height on larger screens */
+    }
+}
+
+/* Optional: Styling to make sure the page is responsive */
+@media (max-width: 767px) {
+    .map-wrapper {
+        margin-top: 20px;
+    }
+}
+.container {
+    text-align: center;
+    padding: 2rem;
+}
+
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.feature-box {
+    width: 30%;
+    min-width: 250px;
+    text-align: center;
+}
+
+.feature-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image fits inside the circle */
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #6A5ACD;
+}
+
+p {
+    font-size: 1rem;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-box {
+        width: 80%;
+    }
+}
+/* General Carousel Styling */
+
+.carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.heading1 {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #6A5ACD;
+        }
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    display: none; /* Hide all slides by default */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    display: block; /* Only show the active slide */
+    opacity: 1;
+}
+
+.testimonial-card {
+    background-color: #dec8ff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 8px;
+}
+
+.stars {
+    font-size: 20px;
+    color: #b892ff;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #dec8ff;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: purple;
+}
+footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.footer-section h4 {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.footer-section a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer-bottom a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+/* Notification bar styles */
+.notification-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 9999;
+    font-size: 18px;
+}
+
+.notification-bar.error {
+    background-color: #f44336; /* Red for decline notifications */
+}
+
+.notification-bar.show {
+    display: block;
+}
+.notification-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;  /* Adjust position as needed */
+    right: -10px;  /* Adjust position as needed */
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 12px;
+}
+        
+    </style>
+   
+
+
+</head>
+<body>
+   
+    
+<div class="background-section" >
+    
+        <span id="notification-count" class="notification-count">0</span>
+    <iframe src="https://www.youtube.com/embed/ejx06woQGA0?autoplay=1&loop=1&playlist=ejx06woQGA0&mute=1&controls=0&showinfo=0&autohide=1&playsinline=1&modestbranding=1&start=20" 
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen id="video-background">
+    </iframe>
+
+
+
+    <nav>
+        <div class="logo-container">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+            <span class="logo-text">
+                <span>Binary</span>
+                <span>Blossom</span>
+            </span>
+        </div>
+        <div class="nav-links">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="{%url 'chat'%}">blossom Chat</a>
+            <a href="{%url 'show_map'%}">Tracker</a>
+        
+        </div>
+    </nav>
+    {% if messages %}
+    <script>
+        // Add notifications based on Django messages
+        {% for message in messages %}
+            addNotification("{{ message }}");
+        {% endfor %}
+    </script>
+{% endif %}
+<div class="notification"
+<div id="notification-bar" class="notification-bar"></div>
+    <div id="notification-bar" class="notification-bar"></div>
+    <div class="notification-icon">
+        <i class="fas fa-bell" id="notification-icon"></i>
+    </div>
+
+    <div class="container">
+        <div class="text-content">
+            <h2>
+                <span>Blossoming</span>
+                <span>with</span>
+                <span>Every Mile</span>
+           
+        </div>
+    </div>
+</div>
+
+
+
+<div class="why-choose-section">
+    <div class="why-choose-content">
+        <h3>Why Choose Binary Blossom?</h3>
+        <p>At Binary Blossom, we believe in providing comprehensive insurance solutions that meet your needs at every step. With a team of dedicated professionals, innovative claim processes, and personalized policies, we ensure you're covered every mile of the way.</p>
+        <p>We offer flexible and affordable options to suit various motor insurance needs, with transparent terms, quick claims processing, and excellent customer service. Choose Binary Blossom for peace of mind and a partner you can trust.</p>
+    </div>
+    <div class="why-choose-image">
+        <img src="{% static 'images/polostyle.jpg' %}" alt="Why Choose Binary Blossom Image">
+    </div>
+</div>
+
+    <div class="heading">
+        
+    </div>
+    <div class="features">
+        <div class="feature-box">
+            <img class="feature-image" src="{% static 'images/icon11.png'%}" alt="Seamless Digital Experience">
+            <h3>Seamless Digital Experience</h3>
+            <p>Our innovative mobile app makes managing your insurance easier than ever. From quick policy registration to hassle-free claims processing, everything is designed to provide a smooth and efficient experience. Access your policy details, submit claims, and get real-time updates all in one place.</p>
+        </div>
+        <div class="feature-box">
+            <img class="feature-image" src="{% static 'images/icon2.jpg'%}" alt="Comprehensive Coverage Options">
+            <h3>Comprehensive Coverage Options</h3>
+            <p>We offer a range of coverage plans designed to protect you against various risks. Whether you need basic liability insurance or comprehensive coverage, we have a plan that suits your needs. Our goal is to ensure you feel safe and secure on the road.</p>
+        </div>
+        <div class="feature-box">
+            <img class="feature-image" src="{% static 'images/icon3.jpg'%}" alt="Exceptional Customer Support">
+            <h3>Exceptional Customer Support</h3>
+            <p>Customer satisfaction is our top priority. Our friendly and knowledgeable support team is available to assist you with any questions or issues. We pride ourselves on providing prompt, reliable, and helpful service to all our clients.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="carousel"></div>
+<div class="heading1">
+    Top-rated by Drivers Just Like You
+</div>
+    <div class="carousel-inner">
+        
+        <div class="carousel-item active">
+            <div class="testimonial-card">
+                <div class="stars">
+                    ★★★★★
+                </div>
+                <p><strong>"I can definitely recommend..."</strong></p>
+                <p>I can definitely recommend this service to anyone. It was a great experience.</p>
+                <p>Neuwe - 1 month ago</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="testimonial-card">
+                <div class="stars">
+                    ★★★★☆
+                </div>
+                <p><strong>"Caters to clients' needs"</strong></p>
+                <p>Very responsive and attentive to specific requests.</p>
+                <p>Pule M - 3 months ago</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="testimonial-card">
+                <div class="stars">
+                    ★★★★★
+                </div>
+                <p><strong>"Good service"</strong></p>
+                <p>Lovely experience with excellent customer service.</p>
+                <p>Asiphile - 1 month ago</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+    <div class="carousel-indicators">
+        <span class="indicator active" onclick="setSlide(0)"></span>
+        <span class="indicator" onclick="setSlide(1)"></span>
+        <span class="indicator" onclick="setSlide(2)"></span>
+    </div>
+</div>
+
+<div class="faq-section">
+    <h3>Frequently Asked Questions</h3>
+
+    <div class="faq-item">
+        <div class="faq-question">How do I file a claim?</div>
+        <div class="faq-answer">You can file a claim by logging into your profile, navigating to the ‘Claim’ section, and following the step-by-step process outlined there.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">What does my policy cover?</div>
+        <div class="faq-answer">Our policies cover a range of services including vehicle repairs, medical expenses, and third-party liability. Please read your policy document for detailed coverage.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">How can I contact customer support?</div>
+        <div class="faq-answer">You can contact us via the ‘Help’ section on our website, through email, or by calling our customer service line available 24/7.</div>
+    </div>
+</div>
+
+
+    <h3 class="section-title"><strong>Get in Touch</strong></h3>
+    
+    <div class="content-wrapper">
+      
+        <div class="contact-details">
+            <ul>
+                <li>Phone: <a href="tel:0823156711" class="text-black">0823156711</a></li>
+                <li>WhatsApp: <a href="tel:0728081897" class="text-black">0728081897</a></li>
+                <li>Email: <a href="mailto:ayandakhalo515@gmail.com" class="text-black">ayandakhalo515@gmail.com</a></li>
+                <li>Address: Kimberley, South Africa</li>
+                <li>Working Hours: 24/7 Adventure Time</li>
+            </ul>
+        </div>
+
+      
+        <div class="map-wrapper">
+            <iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13651.112062603147!2d24.7578931!3d-28.7468691!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9f6d2d7a64ee2f%3A0xe2099713c5ed91f8!2sKimberley%2C%20South%20Africa!5e0!3m2!1sen!2suk!4v1649795794439!5m2!1sen!2suk" allowfullscreen=""></iframe>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>INSURANCE PRODUCTS</h4>
+        <ul>
+          <li>Car Insurance</li>
+          <li>Binary Blossom Car Insurance</li>
+          <li>Home Contents Insurance</li>
+          <li>Life Insurance</li>
+          <li>Business Insurance</li>
+          <li>Buildings Insurance</li>
+          <li>Portable Possessions Insurance</li>
+          <li>Personal Insurance</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>EXTRAS</h4>
+        <ul>
+          <li>Roadside Assistance</li>
+          <li>Binary Blossom App</li>
+          <li>Manage Policy</li>
+          <li>Blog</li>
+          <li>Our Latest Campaign</li>
+          <li>Stay Safe from Scams</li>
+          <li>Insurance Definitions Explained</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>CALL CENTRE OPERATING HOURS</h4>
+        <p><strong>Sales:</strong><br>
+          Mon - Fri: 08:00 - 18:00<br>
+          Sat: 08:00 - 13:00<br>
+          Sun: Closed<br>
+          Public Holidays: Closed</p>
+        <p><strong>Support:</strong><br>
+          Mon - Fri: 08:00 - 17:00<br>
+          Sat: 08:00 - 13:00<br>
+          Sun: Closed<br>
+          Public Holidays: Closed</p>
+        <p><strong>Address:</strong><br>
+          1 Insurance Avenue, City, Zip Code</p>
+      </div>
+  
+      <div class="footer-section social-media">
+        <h4>Follow Us</h4>
+        <a href="#"><img src="{% static 'images/facebook .jpg'%}" alt="Facebook"></a>
+        <a href="#"><img src="{% static 'images/twitter.jpg'%}" alt="Twitter"></a>
+        <a href="#"><img src="{% static 'images/youtube.jpg'%}" alt="YouTube"></a>
+        <a href="#"><img src="{% static 'images/instagram.jpg'%}" alt="Instagram"></a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Binary Blossom Insurance - All Rights Reserved</p>
+      <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+    </div>
+  </footer>
+<script>
+  
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            answer.classList.toggle('visible');
+        });
+    });
+    let currentSlide = 0;
+
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+            slide.classList.add('active');
+        }
+    });
+    
+    indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % document.querySelectorAll('.carousel-item').length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + document.querySelectorAll('.carousel-item').length) % document.querySelectorAll('.carousel-item').length;
+    showSlide(currentSlide);
+}
+
+function setSlide(index) {
+    currentSlide = index;
+    showSlide(currentSlide);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showSlide(currentSlide);
+});
+function showNotification(message, type) {
+    const notificationBar = document.getElementById('notification-bar');
+    notificationBar.innerHTML = "Approved";
+    notificationBar.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336'; // Green for success, red for error
+    notificationBar.style.display = 'block'; // Show the notification bar
+
+    // Hide after 5 seconds
+    setTimeout(() => {
+        notificationBar.style.display = 'none';
+    }, 10000);
+}
+
+// Check for notifications from the session (Django flash messages)
+window.addEventListener('DOMContentLoaded', () => {
+    const notification = "{{ messages|safe }}";
+    if (notification) {
+        showNotification(notification, 'success');  // Assuming all messages are success, adjust as necessary
+    }
+});
+function addNotification(message) {
+    const notificationBar = document.getElementById("notification-bar");
+    const notificationCount = document.getElementById("notification-count");
+    
+    // Update notification bar
+    notificationBar.innerHTML += `<div>${message}</div>`;
+
+    // Update notification count
+    const currentCount = parseInt(notificationCount.textContent);
+    notificationCount.textContent = currentCount + 1;
+}
+
+// Example usage
+// This function would be called when a new claim is approved or declined
+addNotification("Claim #12345 has been approved.");
+
+
+</script>
+
+</body>
+</html>

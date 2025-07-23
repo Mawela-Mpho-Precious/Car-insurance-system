@@ -1,0 +1,74 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: url('{% static "images/download.jpeg" %}') no-repeat center center;
+    background-size: cover;
+}
+.policy-container {
+    padding: 20px;
+}
+
+.policy-cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.policy-cards .card {
+    background: linear-gradient(45deg, purple, blue);
+    border-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.policy-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.policy-features li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.policy-features li:before {
+    content: "\2714";
+    font-size: 1rem;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.btn {
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #e67e22;
+}
+
+.btn::after {
+    content: "\2192";
+    margin-left: 10px;
+}

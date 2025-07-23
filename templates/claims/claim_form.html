@@ -1,0 +1,341 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claims Form</title>
+
+    <style>
+        /* General body styling */
+        body {
+            background-color: #CCCCFF; /* Periwinkle background color */
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            margin-top: 75px;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent background */
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-container .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+.nav-links {
+display: flex;
+justify-content: flex-end;
+width: 100%;
+        }
+.nav-links a {
+color: #9370DB;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #6A5ACD;
+            color: #fff;
+        }
+
+        /* Form styling */
+        form {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2); /* Slightly transparent black background */
+            border-radius: 10px;
+        }
+
+        /* Heading Styling */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Form field container */
+        .field-container {
+            margin-bottom: 15px;
+        }
+
+        /* Label Styling */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        /* Input fields and Select */
+        input[type="text"], 
+        input[type="email"], 
+        input[type="number"], 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+        }
+
+        /* Radio button styling */
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Submit and Attach Button */
+        input[type="submit"], input[type="file"] {
+            padding: 10px;
+            background: linear-gradient(45deg, blue, purple);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Adjust button for file upload */
+        input[type="file"] {
+            background: linear-gradient(45deg, blue, purple); /* Attach button blue */
+        }
+
+        /* Hover effects */
+        input[type="submit"]:hover, input[type="file"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  position:relative;
+  bottom: 0;
+  margin-top: 50px
+  
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+.footer-section h4 {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.footer-section a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer-bottom a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+    </style>
+
+    <!-- Ensure Font Awesome is included for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+
+            <a href="#">Binary Blossoms</a>
+        </div>
+        <div class="nav-links">
+            
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="#">blossom Chat</a>
+            <a href="{%url 'show_map' %}">Tracker</a>
+            <a href="#">
+                <i class="fas fa-user profile-icon"></i>Profile
+            </a>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Form -->
+   <form>
+
+        <div class="field-container">
+          <form action="{% url 'claim_success' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+          </div>
+        </form>
+
+        
+    </form>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-section">
+            <h4>INSURANCE PRODUCTS</h4>
+            <ul>
+              <li>Car Insurance</li>
+              <li>Binary Blossom Car Insurance</li>
+              <li>Home Contents Insurance</li>
+              <li>Life Insurance</li>
+              <li>Business Insurance</li>
+              <li>Buildings Insurance</li>
+              <li>Portable Possessions Insurance</li>
+              <li>Personal Insurance</li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>EXTRAS</h4>
+            <ul>
+              <li>Roadside Assistance</li>
+              <li>Binary Blossom App</li>
+              <li>Manage Policy</li>
+              <li>Blog</li>
+              <li>Our Latest Campaign</li>
+              <li>Stay Safe from Scams</li>
+              <li>Insurance Definitions Explained</li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>CALL CENTRE OPERATING HOURS</h4>
+            <p><strong>Sales:</strong><br>
+              Mon - Fri: 08:00 - 18:00<br>
+              Sat: 08:00 - 13:00<br>
+              Sun: Closed<br>
+              Public Holidays: Closed</p>
+            <p><strong>Support:</strong><br>
+              Mon - Fri: 08:00 - 17:00<br>
+              Sat: 08:00 - 13:00<br>
+              Sun: Closed<br>
+              Public Holidays: Closed</p>
+            <p><strong>Address:</strong><br>
+              1 Insurance Avenue, City, Zip Code</p>
+          </div>
+      
+          <div class="footer-section social-media">
+            <h4>Follow Us</h4>
+            <a href="#"><img src="{% static 'images/facebook .jpg'%}" alt="Facebook"></a>
+            <a href="#"><img src="{% static 'images/twitter.jpg'%}" alt="Twitter"></a>
+            <a href="#"><img src="{% static 'images/youtube.jpg'%}" alt="YouTube"></a>
+            <a href="#"><img src="{% static 'images/instagram.jpg'%}" alt="Instagram"></a>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2024 Binary Blossom Insurance - All Rights Reserved</p>
+          <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+        </div>
+      </footer>
+
+      
+
+</body>
+</html>
+

@@ -1,0 +1,280 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #user-info {
+            background-color: #f4f4f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Styling for the user information text */
+        #user-info p {
+            font-size: 1.2em;
+            line-height: 1.6em;
+        }
+
+        #user-info p span {
+            font-weight: bold;
+            color: #2d7dd2; /* Blue color for latitude and longitude */
+        }
+       .body{
+        background-color: mediumpurple;
+       }
+       .nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0.5, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+.nav-links {
+display: flex;
+justify-content: flex-end;
+width: 100%;
+        }
+.nav-links a {
+color: #9370DB;
+padding: 5px 20px;
+text-decoration: none;
+text-transform: uppercase;
+font-weight: bold;
+display: flex;
+align-items: center;
+border-radius: 25px;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-links a:hover {
+background-color: #6A5ACD;
+color: #fff;
+        }
+        footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  position:relative;
+  bottom: 0;
+  margin-top: 50px
+  
+}
+
+
+        footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  position:relative;
+  bottom: 0;
+  margin-top: 50px
+  
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+.footer-section h4 {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.footer-section a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer-bottom a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+       
+        
+    </style>
+</head>
+
+<body>
+    <div class="nav"></div>
+        <div class="logo">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+
+            <a href="#">Binary Blossoms</a>
+        </div>
+        <div class="nav-links">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="{%url 'chat'%}">blossom Chat</a>
+            <a href="#">Tracker</a>
+            
+        </div>
+   
+    <div id="map" style="height: 400px;"></div>
+
+   
+    <div id="user-info" style="margin-top: 10px; font-family: Arial, sans-serif;">
+ =
+        <p>User: <span id="username"></span></p>
+        <p>Latitude: <span id="lat"></span></p>
+        <p>Longitude: <span id="lng"></span></p>
+    </div>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-section">
+            <h4>INSURANCE PRODUCTS</h4>
+            <ul>
+              <li>Car Insurance</li>
+              <li>Binary Blossom Car Insurance</li>
+              <li>Home Contents Insurance</li>
+              <li>Life Insurance</li>
+              <li>Business Insurance</li>
+              <li>Buildings Insurance</li>
+              <li>Portable Possessions Insurance</li>
+              <li>Personal Insurance</li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>EXTRAS</h4>
+            <ul>
+              <li>Roadside Assistance</li>
+              <li>Binary Blossom App</li>
+              <li>Manage Policy</li>
+              <li>Blog</li>
+              <li>Our Latest Campaign</li>
+              <li>Stay Safe from Scams</li>
+              <li>Insurance Definitions Explained</li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>CALL CENTRE OPERATING HOURS</h4>
+            <p><strong>Sales:</strong><br>
+              Mon - Fri: 08:00 - 18:00<br>
+              Sat: 08:00 - 13:00<br>
+              Sun: Closed<br>
+              Public Holidays: Closed</p>
+            <p><strong>Support:</strong><br>
+              Mon - Fri: 08:00 - 17:00<br>
+              Sat: 08:00 - 13:00<br>
+              Sun: Closed<br>
+              Public Holidays: Closed</p>
+            <p><strong>Address:</strong><br>
+              1 Insurance Avenue, City, Zip Code</p>
+          </div>
+      
+          <div class="footer-section social-media">
+            <h4>Follow Us</h4>
+            <a href="#"><img src="{% static 'images/facebook .jpg'%}" alt="Facebook"></a>
+            <a href="#"><img src="{% static 'images/twitter.jpg'%}" alt="Twitter"></a>
+            <a href="#"><img src="{% static 'images/youtube.jpg'%}" alt="YouTube"></a>
+            <a href="#"><img src="{% static 'images/instagram.jpg'%}" alt="Instagram"></a>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2024 Binary Blossom Insurance - All Rights Reserved</p>
+          <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+        </div>
+      </footer>    
+
+    <script>
+        
+        function initMap(latitude, longitude, username) {
+            var map = L.map('map').setView([latitude, longitude], 13);
+
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+           
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('You are here.')
+                .openPopup();
+
+           
+           
+            document.getElementById('lat').textContent = latitude;
+            document.getElementById('lng').textContent = longitude;
+        }
+
+        
+        var latitude = -28.748359;
+        var longitude = 24.763800;
+       
+
+
+        initMap(latitude, longitude, username);
+    </script>
+</body>
+</html>

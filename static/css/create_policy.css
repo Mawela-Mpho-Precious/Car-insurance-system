@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("{% static 'image/policy_background.jpg' %}");
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Move container to the left */
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.form-container {
+    background-color: #1c1b3b;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    width: 500px; /* Increase the width of the container */
+    margin-left: 50px; /* Add margin to move the container to the left */
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.form-container select,
+.form-container input[type="number"],
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.form-container select {
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+.form-container input[type="submit"] {
+    background: linear-gradient(45deg, #a04cff, #5c2b93);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.form-container input[type="submit"]:hover {
+    background: linear-gradient(45deg, #5c2b93, #a04cff);
+}
+.btn {
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: plum;
+}
+
+.btn::after {
+    content: "\2192";
+    margin-left: 10px;
+}
+.h1{
+    color: white;
+}
+
+.nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}

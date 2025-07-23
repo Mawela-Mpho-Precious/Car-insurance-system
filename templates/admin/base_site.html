@@ -1,0 +1,26 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+    <!-- Notification Bar -->
+    <div id="notification-bar" style="background-color: #f5c542; padding: 10px; display: none;">
+        <p id="notification-message" style="color: #000;"></p>
+    </div>
+    <script>
+        window.onload = function() {
+            var notifications = {{ notifications|safe }};  // Get notifications passed to the template
+
+            if (notifications.length > 0) {
+                var message = 'You have ' + notifications.length + ' unread notification(s)';
+                var notificationBar = document.getElementById("notification-bar");
+                var notificationMessage = document.getElementById("notification-message");
+
+                // Set notification message and show the notification bar
+                notificationMessage.innerText = message;
+                notificationBar.style.display = "block";
+            }
+        };
+    </script>
+
+    <!-- Render the rest of the page content -->
+    {{ block.super }}
+{% endblock %}
+

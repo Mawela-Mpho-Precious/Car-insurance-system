@@ -1,0 +1,419 @@
+
+{% load static %}
+
+<html>
+<head>
+    
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+     background-color: #D8BFD8;
+        background-size: cover;
+        justify-content: left;
+    }
+
+    .policy-container {
+        padding: 20px;
+        margin-top: 100;
+    }
+
+    .policy-cards {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: left;
+    }
+
+    .policy-cards .card {
+        background-color:#BDB5D5;
+        
+        border-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        padding: 10px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .policy-features {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    .policy-features li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .policy-features li:before {
+        content: "\2714";
+        font-size: 1rem;
+        color: white;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .btn {
+        border-radius: 25px;
+        background-color: white;
+        color: black;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: plum;
+    }
+
+    .btn::after {
+        content: "\2192";
+        margin-left: 10px;
+    }
+    .h1{
+        color: white;
+    }
+    .carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.testimonial-card {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 8px;
+}
+
+.stars {
+    font-size: 20px;
+    color: pink;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: pink;
+}
+.nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+.nav-links {
+display: flex;
+justify-content: flex-end;
+width: 100%;
+        }
+.nav-links a {
+color: #9370DB;
+padding: 5px 20px;
+text-decoration: none;
+text-transform: uppercase;
+font-weight: bold;
+display: flex;
+align-items: center;
+border-radius: 25px;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-links a:hover {
+background-color: #6A5ACD;
+color: #fff;
+        }
+        footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  position:relative;
+  bottom: 0;
+  margin-top: 50px
+  
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+.footer-section h4 {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.footer-section a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer-bottom a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+.logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-container .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFF;
+        }
+    
+</style>
+<nav>
+    <div class="nav">
+        <div class="logo-container">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+
+            <a href="#">Binary Blossoms</a>
+        </div>
+        <div class="nav-links">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="{%url 'chat'%}">blossom Chat</a>
+            <a href="{%url 'show_map' %}">Tracker</a>
+            
+        </div>
+</nav>
+
+{% block content %}
+<div class="container-fluid policy-container">
+    <div class="row justify-content-center">
+        <div class="col-12 content-head">
+            <div class="mbr-section-head mb-5">
+                
+            </div>
+        </div>
+    </div>
+    <div class="row policy-cards justify-content-center">
+        <div class="card col-12 col-md-6 col-lg-3">
+            <div class="card-body">
+                <h5 class="card-title"><strong>Basic (Liability)</strong></h5>
+                <h1 class="card-subtitle mb-2 text-muted"><strong>From R2000</strong></h1>
+                <ul class="policy-features">
+                    <li>Covers minimum legal requirements.</li>
+                    <li>Includes bodily injury and property damage.</li>
+                    <li>Car Tracker.</li>
+                </ul>
+                <a href="{% url 'Upload_Doc' %}"class="btn btn-primary">Get Basic &rarr;</a>
+            </div>
+        </div>
+        <div class="card col-12 col-md-6 col-lg-3">
+            <div class="card-body">
+                <h5 class="card-title"><strong>Standard (Liability + Collision)</strong></h5>
+                <h1 class="card-subtitle mb-2 text-muted"><strong>R3000</strong></h1>
+                <ul class="policy-features">
+                    <li>Basic coverage and collision.</li>
+                    <li>Pays for damages to your car in a collision.</li>
+                    <li>Pays for car theft.</li>
+                </ul>
+                <a href="{% url 'Upload_Doc' %}"class="btn btn-primary">Get Standard &rarr;</a>
+            </div>
+        </div>
+        <div class="card col-12 col-md-6 col-lg-3">
+            <div class="card-body">
+                <h5 class="card-title"><strong>Premium (Full Coverage)</strong></h5>
+                <h1 class="card-subtitle mb-2 text-muted"><strong>R4500</strong></h1>
+                <ul class="policy-features">
+                    <li>Includes basic and standard coverage.</li>
+                    <li>Comprehensive coverage.</li>
+                    <li>Free car servicing every three months.</li>
+                </ul>
+                <a href="{% url 'Upload_Doc' %}" class="btn btn-primary">Get Premium &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>INSURANCE PRODUCTS</h4>
+        <ul>
+          <li>Car Insurance</li>
+          <li>Binary Blossom Car Insurance</li>
+          <li>Home Contents Insurance</li>
+          <li>Life Insurance</li>
+          <li>Business Insurance</li>
+          <li>Buildings Insurance</li>
+          <li>Portable Possessions Insurance</li>
+          <li>Personal Insurance</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>EXTRAS</h4>
+        <ul>
+          <li>Roadside Assistance</li>
+          <li>Binary Blossom App</li>
+          <li>Manage Policy</li>
+          <li>Blog</li>
+          <li>Our Latest Campaign</li>
+          <li>Stay Safe from Scams</li>
+          <li>Insurance Definitions Explained</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>CALL CENTRE OPERATING HOURS</h4>
+        <p><strong>Sales:</strong><br>
+          Mon - Fri: 08:00 - 18:00<br>
+          Sat: 08:00 - 13:00<br>
+          Sun: Closed<br>
+          Public Holidays: Closed</p>
+        <p><strong>Support:</strong><br>
+          Mon - Fri: 08:00 - 17:00<br>
+          Sat: 08:00 - 13:00<br>
+          Sun: Closed<br>
+          Public Holidays: Closed</p>
+        <p><strong>Address:</strong><br>
+          1 Insurance Avenue, City, Zip Code</p>
+      </div>
+  
+      <div class="footer-section social-media">
+        <h4>Follow Us</h4>
+        <a href="#"><img src="{% static 'images/facebook .jpg'%}" alt="Facebook"></a>
+        <a href="#"><img src="{% static 'images/twitter.jpg'%}" alt="Twitter"></a>
+        <a href="#"><img src="{% static 'images/youtube.jpg'%}" alt="YouTube"></a>
+        <a href="#"><img src="{% static 'images/instagram.jpg'%}" alt="Instagram"></a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Binary Blossom Insurance - All Rights Reserved</p>
+      <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+    </div>
+  </footer>    
+
+
+{% endblock %}
+</body>
+</html>

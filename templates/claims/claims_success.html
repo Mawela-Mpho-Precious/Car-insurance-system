@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Submitted Successfully</title>
+
+    <style>
+        /* General body styling */
+        body {
+            background-color: #CCCCFF; /* Periwinkle background color */
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Success message container */
+        .success-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Success icon */
+        .success-container i {
+            font-size: 3rem;
+            color: #45a049; /* Green color for success */
+        }
+
+        /* Heading and message styling */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .btn {
+            padding: 10px 20px;
+            background-color: #6A5ACD; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #9370DB; /* Hover color */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-container">
+        <i class="fas fa-check-circle"></i>
+        <h1>Claim Submitted Successfully</h1>
+        <p>Your claim has been successfully submitted. We will get back to you shortly.</p>
+        <a href="{%url 'home'%}" class="btn">Return to Home</a>
+    </div>
+
+    <!-- Ensure Font Awesome is included for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</body>
+</html>

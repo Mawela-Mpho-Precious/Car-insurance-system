@@ -1,0 +1,236 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Insurance Documents Upload</title>
+
+    <style>
+        body {
+            background-color: #F5F5F5; /* Light gray background */
+            font-family: Arial, sans-serif;
+            color: #333; /* Darker text for readability */
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .nav-links {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+                }
+        .nav-links a {
+        color: #9370DB;
+        padding: 5px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        border-radius: 25px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-links a:hover {
+        background-color: #6A5ACD;
+        color: #fff;
+                }
+                footer {
+          background-color: #290133;
+          color: white;
+          padding: 40px 0;
+          text-align: left;
+          font-family: Arial, sans-serif;
+          position:relative;
+          bottom: 0;
+          margin-top: 50px
+          
+        }
+        
+        .footer-container {
+          display: flex;
+          justify-content: space-between;
+          margin: 0 auto;
+          max-width: 1200px;
+          flex-wrap: wrap;
+        
+        }
+        
+        .footer-section {
+          flex: 1;
+          margin: 0 20px;
+        }
+        .footer-section h4 {
+          color: #fff;
+          font-weight: bold;
+          margin-bottom: 15px;
+        }
+        
+        .footer-section ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        
+        .footer-section ul li {
+          margin-bottom: 10px;
+        }
+        
+        .footer-section p {
+          margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+          text-decoration: none;
+          color: white;
+          margin-right: 10px;
+        }
+        
+        .footer-section a img {
+          width: 30px;
+          height: 30px;
+          margin-right: 10px;
+        }
+        
+        .footer-bottom {
+          background-color: #222;
+          padding: 20px;
+          text-align: center;
+          color: white;
+          margin-top: 40px;
+        }
+        
+        .footer-bottom a {
+          color: #fff;
+          margin: 0 10px;
+          text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+          text-decoration: underline;
+        }
+        .logo-container {
+                    display: flex;
+                    align-items: center;
+                }
+                .logo-container img {
+                    height: 40px;
+                    margin-right: 10px;
+                }
+                .logo-container .logo-text {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #FFF;
+                }
+        form {
+            width: 400px; /* Fixed width for the form */
+            margin: 50px auto; /* Centered form */
+            padding: 20px; /* Padding inside the form */
+            background-color: rgba(255, 255, 255, 0.9); /* Light background for form */
+            border-radius: 10px; /* Rounded edges */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        h1 {
+            text-align: center; /* Centered heading */
+            margin-bottom: 20px; /* Space below heading */
+            font-size: 24px; /* Heading size */
+            color: #4B0082; /* Indigo color for heading */
+        }
+
+        .field-container {
+            margin-bottom: 15px; /* Space between fields */
+        }
+
+        label {
+            display: block; /* Block display for labels */
+            margin-bottom: 5px; /* Space below label */
+            font-size: 16px; /* Label size */
+        }
+
+        input[type="file"] {
+            width: 100%; /* Full width for file input */
+            padding: 10px; /* Padding inside file input */
+            border-radius: 5px; /* Rounded edges */
+            border: 1px solid #ccc; /* Light border */
+            font-size: 14px; /* Font size for file input */
+            background: #f0f0f0; /* Light background for file input */
+            color: #333; /* Dark text for file input */
+        }
+
+        input[type="submit"] {
+            padding: 10px; /* Padding inside submit button */
+            background: #4B0082; /* Indigo color for submit button */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded edges */
+            cursor: pointer; /* Pointer cursor */
+            width: 100%; /* Full width */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #6A5ACD; /* Slate blue on hover */
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Navigation -->
+</style>
+<nav>
+    <div class="nav">
+        <div class="logo-container">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+
+            <a href="#">Binary Blossoms</a>
+        </div>
+        <div class="nav-links">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="{%url 'chat'%}">blossom Chat</a>
+            <a href="{%url 'show_map' %}">Tracker</a>
+           
+        </div>
+</nav>
+
+    <!-- Form -->
+    <form method="post" action="{% url 'Upload_Doc' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Upload Required Documents</h1>
+        
+        <div class="field-container">
+            {{ form.as_p }} <!-- Ensure your form is passed correctly -->
+        </div>
+
+        <div class="field-container">
+            <input type="submit" value="Proceed to Payment">
+        </div>
+    </form>
+</body>
+</html>

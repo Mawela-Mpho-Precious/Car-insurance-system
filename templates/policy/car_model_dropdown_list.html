@@ -1,0 +1,18 @@
+{% for car_model in car_models %}
+    <option value="{{ car_model.id }}">{{ car_model.model_name }}</option>
+{% endfor %}
+<script>
+    document.getElementById('id_car').addEventListener('change', function() {
+        var url = '{% url "ajax_load_car_models" %}';  // get the ajax url
+        var carId = $(this).val();  // get the selected car id from the HTML input
+        $.ajax({
+            url: url,
+            data: {
+                'car': carId
+            },
+            success: function (data) {
+                $("#id_car_model").html(data);  // replace the car model dropdown with the updated options
+            }
+        });
+    });
+</script>

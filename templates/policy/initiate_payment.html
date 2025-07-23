@@ -1,0 +1,418 @@
+
+{%load static%}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+   <style>
+  body {
+    background-color: #C8A2C8;
+    font-family: Arial, sans-serif;
+    margin-top: 100px;
+}
+
+.payment-container {
+    width: 800px;
+    margin-bottom: 50;
+   
+    background-color: #E6E6FA;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0);
+    justify-content: center;
+}
+
+.logo {
+    text-align: left;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.payment-options-container {
+    width: 25%;
+    background-color: #E6E6FA;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.payment-options h3 {
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.payment-options .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-options .options label {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.payment-options .options img {
+    width: 40px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.payment-form {
+    margin-top: 50;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.left-column {
+    width: 48%;
+}
+
+.right-column {
+    width: 48%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.pay-button {
+    padding: 12px;
+    background-color: #D056E5;
+    background: linear-gradient(45deg, #d056e5, #7e02ed);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    margin: 20px auto 0;
+    display: block;
+}
+
+.pay-button:hover {
+    background-color:pink ;
+}
+nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent background */
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-container .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFF;
+        }       
+
+        .nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+.nav-links {
+display: flex;
+justify-content: flex-end;
+width: 100%;
+        }
+.nav-links a {
+color: #9370DB;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #6A5ACD;
+            color: #fff;
+        }
+        footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  position:relative;
+  bottom: 0;
+  margin-top: 50px
+  
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+.footer-section h4 {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.footer-section a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer-bottom a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+   </style>
+</head>
+<body>
+    
+    <div class="nav">
+        <div class="logo-container">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+
+            <a href="#">Binary Blossoms</a>
+        </div>
+        <div class="nav-links">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="#">blossom Chat</a>
+            <a href="{%url 'show_map' %}">Tracker</a>
+            
+        </div>
+    </div>
+   
+
+
+<div class="payment-options-container">
+    <div class="payment-options">
+        <h3>Payment Options</h3>
+        <div class="options">
+            <label class="option">
+                <input type="radio" name="payment_option" value="credit_debit_card">Credit & Debit
+                <img src="{% static 'images/visa-logo.png' %}" alt="Visa">
+            </label>
+           
+            <label class="option">
+                <input type="radio" name="payment_option" value="masterpass">MasterPass
+                <img src="{% static 'images/masterpass-logo.png' %}" alt="MasterPass">
+            </label>
+        </div>
+    </div>
+</div>
+
+
+<div class="payment-container">
+    <form action="" method="POST" action="{% url 'initiate_payment' %}" class="payment-form">
+        {% csrf_token %}
+        
+
+        <div class="input-group full-width">
+            <label for="card_description">Card Description:</label>
+            <input type="text" name="card_description" placeholder="E.g. Standard Bank" required>
+        </div>
+
+        
+        <div class="left-column">
+            <div class="input-group">
+                <label for="name_on_card">Name on Card:</label>
+                <input type="text" name="name_on_card" required>
+            </div>
+
+            <div class="input-group">
+                <label for="card_number">Card Number:</label>
+                <input type="text" name="card_number" maxlength="16" placeholder="1234 5678 9101 1121" required>
+            </div>
+        </div>
+
+       
+        <div class="right-column">
+            <div class="input-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" name="cvv" maxlength="3" required>
+            </div>
+
+            <div class="input-group">
+                <label for="expiry_year">Expiry Year:</label>
+                <input type="text" name="expiry_year" maxlength="4" required>
+            </div>
+        </div>
+
+        <!-- Full-width Amount Field -->
+        <div class="input-group full-width">
+            <label for="amount">Amount (ZAR):</label>
+            <input type="number" step="0.01" name="amount" placeholder="Enter amount" required>
+        </div>
+        
+        <!-- Pay Button -->
+        <button type="submit" class="pay-button">Pay</button>
+    </form>
+</div>
+<footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>INSURANCE PRODUCTS</h4>
+        <ul>
+          <li>Car Insurance</li>
+          <li>Binary Blossom Car Insurance</li>
+          <li>Home Contents Insurance</li>
+          <li>Life Insurance</li>
+          <li>Business Insurance</li>
+          <li>Buildings Insurance</li>
+          <li>Portable Possessions Insurance</li>
+          <li>Personal Insurance</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>EXTRAS</h4>
+        <ul>
+          <li>Roadside Assistance</li>
+          <li>Binary Blossom App</li>
+          <li>Manage Policy</li>
+          <li>Blog</li>
+          <li>Our Latest Campaign</li>
+          <li>Stay Safe from Scams</li>
+          <li>Insurance Definitions Explained</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>CALL CENTRE OPERATING HOURS</h4>
+        <p><strong>Sales:</strong><br>
+          Mon - Fri: 08:00 - 18:00<br>
+          Sat: 08:00 - 13:00<br>
+          Sun: Closed<br>
+          Public Holidays: Closed</p>
+        <p><strong>Support:</strong><br>
+          Mon - Fri: 08:00 - 17:00<br>
+          Sat: 08:00 - 13:00<br>
+          Sun: Closed<br>
+          Public Holidays: Closed</p>
+        <p><strong>Address:</strong><br>
+          1 Insurance Avenue, City, Zip Code</p>
+      </div>
+  
+      <div class="footer-section social-media">
+        <h4>Follow Us</h4>
+        <a href="#"><img src="{% static 'images/facebook .jpg'%}" alt="Facebook"></a>
+        <a href="#"><img src="{% static 'images/twitter.jpg'%}" alt="Twitter"></a>
+        <a href="#"><img src="{% static 'images/youtube.jpg'%}" alt="YouTube"></a>
+        <a href="#"><img src="{% static 'images/instagram.jpg'%}" alt="Instagram"></a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Binary Blossom Insurance - All Rights Reserved</p>
+      <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+    </div>
+  </footer>    
+</body>
+
+</html>
+{% endblock %}

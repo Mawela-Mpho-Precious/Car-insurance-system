@@ -1,0 +1,355 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Blossom - 24/7 Roadside Assistance</title>
+    <style>
+        /* Styling for the chatbot */
+        body {
+            font-family: Arial, sans-serif;
+            
+        background-color: #2c1250;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .chat-container {
+            background-color: #fff;
+            width: 350px;
+            height: 500px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            right: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .chat-box {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+            display: flex;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 75%;
+        }
+
+        .user-message .message {
+            background-color: #0084ff;
+            color: #fff;
+        }
+
+        .bot-message .message {
+            background-color: #e5e5ea;
+            color: #000;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #0084ff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c1250;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo h1 {
+            color: #fff;
+        }
+        
+        .nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .nav-links {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+                }
+        .nav-links a {
+        color: #9370DB;
+        padding: 20px 20px;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    border-radius: 50px;
+                    transition: background-color 0.3s ease, color 0.3s ease;            
+                }
+                .nav-links a:hover {
+                    background-color: #6A5ACD;
+                    color: #fff;
+                }
+        
+        
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+        }
+        
+        .text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .text p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .live-chat-button {
+            padding: 12px 20px;
+            background-color: #e971ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .live-chat-button:hover {
+            background-color: #ff99ff;
+        }
+        
+        .image img {
+            width: 300px;
+            border-radius: 10px;
+        }
+        
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div class="nav">
+                    <div class="logo-container">
+                        <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+            
+                        <a href="#">Binary Blossoms</a>
+                    </div>
+                    <div class="nav-links">
+                        <a href="{%url 'home'%}">Home</a>
+                        <a href="{%url 'create_policy'%}">Policy</a>
+                        <a href="{%url 'claim_page'%}">Claim</a>
+                        <a href="#">blossom Chat</a>
+                        <a href="{%url 'show_map' %}">Tracker</a>
+                        
+                    </div>
+                </div>
+               
+            </header>
+    
+            <section class="content">
+                <div class="text">
+                    <h2>24/7 Reliable Roadside Assistance</h2>
+                    <p>Need help on the road? Our team is available 24/7 to assist with flat tires, jump-starts, towing and lockouts. Fast, friendly and professional support to get you back on track quickly. Contact us now!</p>
+                    <button id="live-chat-button">LIVE CHAT</button>
+                </div>
+                <div class="image">
+                    <img src="{% static 'images/tow-truck.jpeg' %}" alt="Roadside Assistance">
+                </div>
+            </section>
+        </div>
+   
+
+
+    <!-- Your existing content here -->
+    
+
+    <div class="chat-container" id="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be appended here -->
+        </div>
+        <input type="text" id="user-input" placeholder="Type your message here..." autofocus>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const liveChatButton = document.getElementById('live-chat-button');
+        const chatContainer = document.getElementById('chat-container');
+
+        liveChatButton.addEventListener('click', function() {
+            chatContainer.style.display = 'block';  // Show the chatbot
+        });
+
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+
+        let askingForAddress = false; 
+        let issueIdentified = false;
+        let greeted = false; 
+
+        const responses = {
+            "greeting": "Welcome to Binary Blossom 24 hours road assistance. How may we help you?",
+            "help": "How can I assist you with your vehicle?",
+            "tire": "If you have a flat tire, we can send a technician to help you within 30 minutes.",
+            "battery": "If you need a jump-start, our team can assist you.",
+            "tow": "We provide towing services. Where is your location?",
+            "accident": "If you've been in an accident, we'll dispatch emergency services to your location. Do you need ambulance assistance?",
+            "ambulance": "An ambulance is on the way. Please remain calm and provide your location.",
+            "thanks": "You're welcome! Drive safe!",
+            "address_request": "Please provide your location so we can send help.",
+            "confirmation": "Thank you! Help is on the way to ",
+            "default": "I'm sorry, I didn't understand that. Can you please rephrase?"
+        };
+        
+        const greetingKeywords = ["hello", "hi", "hey", "good morning", "good evening", "good afternoon"];
+        const accidentKeywords = ["accident", "crash", "collision"];
+        const ambulanceKeywords = ["ambulance", "emergency", "medical"];
+        
+        function sendMessage() {
+            const message = userInput.value.trim();
+            
+            if (message) {
+                addMessage('user', message);
+                userInput.value = ''; 
+
+                if (!greeted && isGreeting(message.toLowerCase())) {
+                    setTimeout(() => {
+                        addMessage('bot', responses['greeting']);
+                        greeted = true;
+                    }, 500);
+                } else if (askingForAddress) {
+                    confirmHelpOnTheWay(message);
+                } else if (!issueIdentified && greeted) {
+                    const response = getBotResponse(message.toLowerCase());
+                    setTimeout(() => {
+                        addMessage('bot', response);
+                        if (response !== responses['default']) {
+                            askingForAddress = true;
+                            issueIdentified = true;
+                            setTimeout(() => {
+                                addMessage('bot', responses['address_request']);
+                            }, 500); 
+                        }
+                    }, 500);
+                }
+            }
+        }
+
+        function addMessage(sender, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', `${sender}-message`);
+
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message');
+            messageContent.textContent = text;
+
+            messageElement.appendChild(messageContent);
+            chatBox.appendChild(messageElement);
+            
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function isGreeting(message) {
+            return greetingKeywords.some(keyword => message.includes(keyword));
+        }
+
+        function getBotResponse(message) {
+            for (let key in responses) {
+                if (message.includes(key)) {
+                    return responses[key];
+                }
+            }
+            return responses['default'];
+        }
+
+        function confirmHelpOnTheWay(address) {
+            setTimeout(() => {
+                addMessage('bot', responses['confirmation'] + address + ".");
+                askingForAddress = false;
+                issueIdentified = false;
+            }, 500);
+        }
+
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

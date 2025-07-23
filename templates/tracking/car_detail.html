@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Tracker</title>
+    <style>
+        /* Add CSS here for styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .results {
+            background: linear-gradient(to right, #111, #333);
+            color: white;
+            padding: 20px;
+        }
+        .map-container {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+</head>
+<body>
+    <div class="map-container" id="map"></div>
+
+    <div class="results">
+        <h3>Results</h3>
+        <p>Name: {{ car.name }}</p>
+        <p>Address: {{ car.address }}</p>
+        <p>Status: {{ car.status }}</p>
+        <p>Speed: {{ car.speed }} mph</p>
+        <p>Date: {{ car.last_updated|date:"d/m/Y" }}</p>
+    </div>
+     
+
+    <script>
+        var carID = "{{ car.id }}";
+        var socket = new WebSocket('ws://' + window.location.host + '/ws/car/' + carID + '/');
+    
+        socket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            var location = data.location;
+            var status = data.status;
+            var speed = data.speed;
+    
+            // Update HTML elements with new data
+            document.getElementById('status').innerText = status;
+            document.getElementById('speed').innerText = speed + ' mph';
+    
+            // Optionally update the map if location data changes
+            // updateMap(location.lat, location.lng);
+        };
+    
+        function sendUpdate() {
+            var location = { lat: 123.45, lng: 678.90 };  // Example data
+            var status = 'Moving';
+            var speed = '120';
+    
+            socket.send(JSON.stringify({
+                'location': location,
+                'status': status,
+                'speed': speed,
+            }));
+        }
+    </script>
+</body>
+</html>

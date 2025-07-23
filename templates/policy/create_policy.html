@@ -1,0 +1,568 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Account</title>
+    <link rel="stylesheet" href="{% static 'create_policy.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    // Custom dropdown functionality
+    var selected = document.querySelector('.select-selected');
+    var items = document.querySelector('.select-items');
+    var optionDivs = items.querySelectorAll('div');
+
+    selected.addEventListener('click', function() {
+        items.classList.toggle('select-hide');
+    });
+
+    optionDivs.forEach(function(div) {
+        div.addEventListener('click', function() {
+            selected.innerHTML = this.innerHTML;
+            items.classList.add('select-hide');
+            // Optionally: handle the selected value
+            console.log('Selected value:', this.getAttribute('data-value'));
+            // Update car model based on selected car name
+            var carName = this.getAttribute('data-value');
+            updateCarModels(carName);
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.matches('.select-selected')) {
+            items.classList.add('select-hide');
+        }
+    });
+
+    // Function to update car models based on selected car name
+    function updateCarModels(carName) {
+        var carModelSelect = document.getElementById('car_model');
+        carModelSelect.innerHTML = ''; // Clear existing options
+
+        var models = {
+            bmw: ['3 Series', '5 Series', '7 Series', 'X1', 'X3', 'X5', 'M3', 'M5', 'Z4', 'i8'],
+            audi: ['A3', 'A4', 'A6', 'Q3', 'Q5', 'Q7', 'TT', 'R8', 'S3', 'S5'],
+            mercedes: ['C-Class', 'E-Class', 'S-Class', 'GLA', 'GLC', 'GLE', 'GLS', 'A-Class', 'B-Class', 'AMG GT'],
+            nissan: ['GT-R', '370Z', 'Altima', 'Maxima', 'Sentra', 'Versa', 'Rogue', 'Murano', 'Pathfinder', 'Armada', 'Kicks', 'Juke', 'Frontier', 'Titan', 'Leaf'],
+            haval: ['H2', 'H6', 'H8', 'H9', 'F7', 'F5', 'H6 Coupe', 'Jolion', 'Big Dog', 'M6'],
+            hyundai: ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona', 'Palisade', 'Venue', 'Accent', 'Veloster', 'Ioniq'],
+            toyota: ['Corolla', 'Camry', 'RAV4', 'Highlander', 'Land Cruiser', 'Tacoma', 'Tundra', 'Prius', 'Supra', '4Runner'],
+            ford: ['F-150', 'Mustang', 'Explorer', 'Escape', 'Edge', 'Bronco', 'Ranger', 'Expedition', 'Fusion', 'EcoSport'],
+            subaru: ['Impreza', 'Legacy', 'Outback', 'Forester', 'Ascent', 'Crosstrek', 'WRX', 'BRZ', 'Levorg', 'SVX'],
+            volkswagen: ['Golf', 'Jetta', 'Passat', 'Tiguan', 'Atlas', 'Arteon', 'ID.4', 'Beetle', 'Polo', 'Touareg']
+        };
+
+        if (carName && models[carName]) {
+            models[carName].forEach(function(model) {
+                var option = document.createElement('option');
+                option.value = model;
+                option.text = model;
+                carModelSelect.appendChild(option);
+            });
+        }
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var x, i, j, selElmnt, a, b, c;
+    /* Look for any elements with the class "custom-select": */
+    x = document.getElementsByClassName("custom-select");
+    for (i = 0; i < x.length; i++) {
+        selElmnt = x[i].getElementsByTagName("select")[0];
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        x[i].appendChild(a);
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < selElmnt.length; j++) {
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.setAttribute("data-value", selElmnt.options[j].value);
+            c.addEventListener("click", function(e) {
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < s.length; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        for (k = 0; k < y.length; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        x[i].appendChild(b);
+        a.addEventListener("click", function(e) {
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+
+    function closeAllSelect(elmnt) {
+        var x, y, i, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        for (i = 0; i < y.length; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < x.length; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+
+    document.addEventListener("click", closeAllSelect);
+});
+ 
+
+    </script>   
+    <style>
+      .select-items div {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.select-items div img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.select-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-selected {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.select-items {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 100%;
+    z-index: 99;
+    max-height: 150px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    color: black;
+}
+
+.select-hide {
+    display: none;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E6E6FA;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content:center; /* Move container to the left */
+    align-items: center;
+    min-height: 50vh;
+    color: white;
+
+}
+
+.form-container {
+    background-color: #CCCCFF;
+    border-radius: 15px;
+    flex:1;
+    margin-top: 100px;
+    padding-bottom: 100px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    width: 500px; /* Increase the width of the container */
+    margin-left: 0px; /* Add margin to move the container to the left */
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.form-container select,
+.form-container input[type="number"],
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.form-container select {
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+.form-container input[type="submit"] {
+    background: linear-gradient(45deg, #a04cff, #5c2b93);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.form-container input[type="submit"]:hover {
+    background: linear-gradient(45deg, #5c2b93, #a04cff);
+}
+.btn {
+    border-radius: 25px;
+    background-color:#C8A2C8 ;
+    color: black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: plum;
+}
+
+.btn::after {
+    content: "\2192";
+    margin-left: 10px;
+}
+.h1{
+    color: white;
+}
+
+.nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+.nav-links {
+display: flex;
+justify-content: flex-end;
+width: 100%;
+        }
+.nav-links a {
+color: #9370DB;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #6A5ACD;
+            color: #fff;
+        }
+
+.content {
+    padding-left: 50px;
+    width: 50%;
+}
+
+.video-container {
+    position: relative;
+    width: 400px;  /* Increased size */
+    height: 400px; /* Increased size */
+    overflow: hidden;
+    border-radius: 50%;
+    justify-content:left;
+
+}
+
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    
+   
+}
+footer {
+  background-color: #290133;
+  color: white;
+  padding: 40px 0;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  position:relative;
+  bottom: 0;
+  margin-top: 50px
+  
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 20px;
+}
+.footer-section h4 {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.footer-section a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer-bottom a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+.logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-container .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #FFF;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="nav">
+        <div class="logo-container">
+            <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+
+            <a href="#">Binary Blossoms</a>
+        </div>
+        <div class="nav-links">
+            <a href="{%url 'home'%}">Home</a>
+            <a href="{%url 'create_policy'%}">Policy</a>
+            <a href="{%url 'claim_page'%}">Claim</a>
+            <a href="#">blossom Chat</a>
+            <a href="{%url 'show_map' %}">Tracker</a>
+            
+        </div>
+    </div>
+   
+    
+    <div class="form-container">
+        <h2>Create New Account</h2>
+        <form action="{% url 'policy' %}" method="POST" class="policy-form">
+            {% csrf_token %}
+            <div class="custom-select">
+                <label for="car_name">Car Name</label>
+                <div class="select-container">
+                    <div class="select-selected">Select Car Name</div>
+                    <div class="select-items select-hide">
+                        <div data-value="bmw">
+                            <img src="{% static 'images/bmw.jpeg' %}" alt="BMW"> BMW
+                        </div>
+                        <div data-value="audi">
+                            <img src="{% static 'images/audi.png' %}" alt="Audi"> Audi
+                        </div>
+                        <div data-value="haval">
+                            <img src="{% static 'images/haval.jpeg' %}" alt="Haval"> Haval
+                        </div>
+                        <div data-value="mercedes">
+                            <img src="{% static 'images/mercedes.jpeg' %}" alt="Mercedes"> Mercedes
+                        </div>
+                        <div data-value="nissan">
+                            <img src="{% static 'images/nissan.png' %}" alt="Nissan"> Nissan
+                        </div>
+                        <div data-value="subaru">
+                            <img src="{% static 'images/subaru.jpeg' %}" alt="Subaru"> Subaru
+                        </div>
+                        <div data-value="toyota">
+                            <img src="{% static 'images/toyota.jpeg' %}" alt="Toyota"> Toyota
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                <label for="car_model">Car Model</label>
+                <select id="car_model" name="model_name">
+                    <option value="">Select Car Model</option>
+                    <!-- Add options dynamically if needed -->
+                </select>
+            
+                <label for="car_mileage">Car Mileage</label>
+                <select id="car_mileage" name="mileage">
+                    <option value="">Select Mileage Range</option>
+                    <option value="1000-10000">1,000 km to 10,000 km</option>
+                    <option value="10000-30000">10,000 km to 30,000 km</option>
+                    <option value="30000-50000">30,000 km to 50,000 km</option>
+                    <option value="50000-100000">50,000 km to 100,000 km</option>
+                    <option value="100000-more">100,000 km and above</option>
+                </select>
+            
+                <label for="year">Year</label>
+                <input type="date" id="year" name="year">
+            
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-section">
+            <h4>INSURANCE PRODUCTS</h4>
+            <ul>
+              <li>Car Insurance</li>
+              <li>Binary Blossom Car Insurance</li>
+              <li>Home Contents Insurance</li>
+              <li>Life Insurance</li>
+              <li>Business Insurance</li>
+              <li>Buildings Insurance</li>
+              <li>Portable Possessions Insurance</li>
+              <li>Personal Insurance</li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>EXTRAS</h4>
+            <ul>
+              <li>Roadside Assistance</li>
+              <li>Binary Blossom App</li>
+              <li>Manage Policy</li>
+              <li>Blog</li>
+              <li>Our Latest Campaign</li>
+              <li>Stay Safe from Scams</li>
+              <li>Insurance Definitions Explained</li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>CALL CENTRE OPERATING HOURS</h4>
+            <p><strong>Sales:</strong><br>
+              Mon - Fri: 08:00 - 18:00<br>
+              Sat: 08:00 - 13:00<br>
+              Sun: Closed<br>
+              Public Holidays: Closed</p>
+            <p><strong>Support:</strong><br>
+              Mon - Fri: 08:00 - 17:00<br>
+              Sat: 08:00 - 13:00<br>
+              Sun: Closed<br>
+              Public Holidays: Closed</p>
+            <p><strong>Address:</strong><br>
+              1 Insurance Avenue, City, Zip Code</p>
+          </div>
+      
+          <div class="footer-section social-media">
+            <h4>Follow Us</h4>
+            <a href="#"><img src="{% static 'images/facebook .jpg'%}" alt="Facebook"></a>
+            <a href="#"><img src="{% static 'images/twitter.jpg'%}" alt="Twitter"></a>
+            <a href="#"><img src="{% static 'images/youtube.jpg'%}" alt="YouTube"></a>
+            <a href="#"><img src="{% static 'images/instagram.jpg'%}" alt="Instagram"></a>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2024 Binary Blossom Insurance - All Rights Reserved</p>
+          <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+        </div>
+      </footer>   
+  
+</body>
+</html>

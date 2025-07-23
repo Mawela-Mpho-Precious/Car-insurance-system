@@ -1,0 +1,159 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadside Assistance</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #2c1250;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
+    
+    .logo h1 {
+        color: #fff;
+    }
+    
+    .nav {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+    }
+    
+    .nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+    }
+    
+    .nav a:hover {
+        text-decoration: underline;
+    }
+    .nav-links {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+            }
+    .nav-links a {
+    color: #9370DB;
+    padding: 20px 20px;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                border-radius: 50px;
+                transition: background-color 0.3s ease, color 0.3s ease;            
+            }
+            .nav-links a:hover {
+                background-color: #6A5ACD;
+                color: #fff;
+            }
+    
+    
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+    }
+    
+    .text h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    
+    .text p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .live-chat-button {
+        padding: 12px 20px;
+        background-color: #e971ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .live-chat-button:hover {
+        background-color: #ff99ff;
+    }
+    
+    .image img {
+        width: 300px;
+        border-radius: 10px;
+    }
+    
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="nav">
+                <div class="logo-container">
+                    <img src="{% static 'images/Picture1.png' %}" alt="Binary Blossom Logo" style="height: 2.3rem;">
+        
+                    <a href="#">Binary Blossoms</a>
+                </div>
+                <div class="nav-links">
+                    <a href="{%url 'home'%}">Home</a>
+                    <a href="{%url 'create_policy'%}">Policy</a>
+                    <a href="{%url 'claim_page'%}">Claim</a>
+                    <a href="#">blossom Chat</a>
+                    <a href="{%url 'show_map' %}">Tracker</a>
+                    <a href="#">
+                        <i class="fas fa-user profile-icon"></i>Profile
+                    </a>
+                </div>
+            </div>
+           
+        </header>
+
+        <section class="content">
+            <div class="text">
+                <h2>24/7 Reliable Roadside Assistance</h2>
+                <p>Need help on the road? Our team is available 24/7 to assist with flat tires, jump-starts, towing and lockouts. Fast, friendly and professional support to get you back on track quickly. Contact us now!</p>
+                <a href="{%url 'chat'%}" class="live-chat-button">Live Chat</a>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/tow-truck.jpeg' %}" alt="Roadside Assistance">
+            </div>
+        </section>
+    </div>
+</body>
+</html>
