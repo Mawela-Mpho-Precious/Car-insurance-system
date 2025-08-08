@@ -77,10 +77,12 @@ Includes tables like:
 - **Frontend**: HTML, CSS 
 - **Version Control**: Git + GitHub
 
-## How to Run
+1. **Open Visual Studio Code**
 
-1. Clone the repository  
-   ```bash
-   git clone https://github.com/your-username/Car-insurance-system.git
-   cd Car-insurance-system
+2. Go to `File > Open Folder` and select the project folder ( `Binary-Blossoms`).
+
+3. Open a new terminal inside VS Code (`Ctrl + ~` or use the Terminal menu).
+
+4. In the terminal, cd the pathe
+5. Then run using python manage.py runserver
 
