@@ -52,7 +52,7 @@ Binary Blossoms is a user-friendly and modern car insurance system designed to s
 ![Claim types](Sceenshots/type2.png)
 
 ### 9. Claim Submission Form
-![Claims Form](Screenshots/claim.png)
+![Claims Form](static/images/claim.png)
 
 ### 10. Admin Dashboard
 ![Admin Dashboard](Screenshots/admin-dashboard.png)
