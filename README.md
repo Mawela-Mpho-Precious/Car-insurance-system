@@ -22,40 +22,40 @@ Binary Blossoms is a user-friendly and modern car insurance system designed to s
 ## 🖼Screenshots
 
 ### 1. Home Page
-![Home Page](screenshots/home.png)
-![Home Page](sceenshots/ho.png)
-![Home Page](sceenshots/ho2.png)
-![Home Page](sceenshots/ho3.png)
+![Home Page](Screenshots/home.png)
+![Home Page](Sceenshots/ho.png)
+![Home Page](Sceenshots/ho2.png)
+![Home Page](Sceenshots/ho3.png)
 
 ### 2. Sign Up
-![Sign Up](sceenshots/signup.png)
-![Sign Up](sceenshots/sign.png)
+![Sign Up](Sceenshots/signup.png)
+![Sign Up](Sceenshots/sign.png)
 
 ### 3. Log In
-![Log In](sceenshots/Login.png)
+![Log In](Sceenshots/Login.png)
 
 ### 4. Forgot Password
-![Forgot Password](sceenshots/forgot.png)
+![Forgot Password](Sceenshots/forgot.png)
 
 ### 5. Policy Options
-![Policy Page](screenshots/options.png)
+![Policy Page](Screenshots/options.png)
 
 ### 6. Policy creation
-![Policy creation](sceenshots/policy.png)
-![Sign Up](sceenshots/sign.png)
+![Policy creation](Sceenshots/policy.png)
+![Sign Up](Sceenshots/sign.png)
 
 ### 7. Payment
-![Payment](sceenshots/payment.png)
+![Payment](Sceenshots/payment.png)
 
 ### 8. Claim types
-![Claim types](sceenshots/types.png)
-![Claim types](sceenshots/type2.png)
+![Claim types](Sceenshots/types.png)
+![Claim types](Sceenshots/type2.png)
 
 ### 9. Claim Submission Form
-![Claims Form](screenshots/claim.png)
+![Claims Form](Screenshots/claim.png)
 
 ### 10. Admin Dashboard
-![Admin Dashboard](screenshots/admin-dashboard.png)
+![Admin Dashboard](Screenshots/admin-dashboard.png)
 
 ## Database Overview
 
