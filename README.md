@@ -22,7 +22,7 @@ Binary Blossoms is a user-friendly and modern car insurance system designed to s
 ## 🖼Screenshots
 
 ### 1. Home Page
-![Home Page](screenshots/home.png)
+![Home Page](static/images/Picture1.png)
 
 ### 2. Policy Options
 ![Policy Page](screenshots/policy-options.png)
